@@ -10,7 +10,7 @@ import {
 import { useRouter } from "expo-router";
 import { Video } from "expo-av";
 
-// ✅ Import your sample videos
+// ✅ Import your local videos
 import pushups from "../assets/videos/strength/pushups.mp4";
 import squats from "../assets/videos/strength/squats.mp4";
 import yoga from "../assets/videos/flexibility/yoga.mp4";
@@ -22,39 +22,38 @@ export default function HomeScreen() {
   const router = useRouter();
   const [expanded, setExpanded] = useState(null);
 
-  // Dropdown data
+  // Categories with keys
   const categories = [
     {
       title: "Strength Training",
       key: "strength",
       videos: [
-        { title: "Pushups", src: pushups },
-        { title: "Squats", src: squats },
+        { title: "Pushups", key: "pushups", src: pushups },
+        { title: "Squats", key: "squats", src: squats },
       ],
     },
     {
       title: "Flexibility Training",
       key: "flexibility",
       videos: [
-        { title: "Yoga", src: yoga },
-        { title: "Stretch", src: stretch },
+        { title: "Yoga", key: "yoga", src: yoga },
+        { title: "Stretch", key: "stretch", src: stretch },
       ],
     },
     {
       title: "Cardio",
       key: "cardio",
       videos: [
-        { title: "Jumping Jacks", src: jumpingJacks },
-        { title: "Burpees", src: burpees },
+        { title: "Jumping Jacks", key: "jumping-jacks", src: jumpingJacks },
+        { title: "Burpees", key: "burpees", src: burpees },
       ],
     },
   ];
 
-  // Handle tap on a video → go to fullscreen workout page
-  const handleVideoPress = (video, title) => {
+  const handleVideoPress = (videoKey, title) => {
     router.push({
       pathname: "/workout",
-      params: { video, title }, // we’ll read this inside workout.js
+      params: { video: videoKey, title },
     });
   };
 
@@ -78,7 +77,7 @@ export default function HomeScreen() {
               <TouchableOpacity
                 key={idx}
                 style={styles.videoWrapper}
-                onPress={() => handleVideoPress(video.src, video.title)}
+                onPress={() => handleVideoPress(video.key, video.title)}
               >
                 <Video
                   source={video.src}
