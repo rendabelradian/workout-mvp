@@ -17,6 +17,7 @@ import yoga from "../assets/videos/flexibility/yoga.mp4";
 import stretch from "../assets/videos/flexibility/stretch.mp4";
 import jumpingJacks from "../assets/videos/cardio/jumping-jacks.mp4";
 import burpees from "../assets/videos/cardio/burpees.mp4";
+import situps from "../assets/videos/strength/squats.mp4";
 
 export default function HomeScreen() {
   const router = useRouter();
@@ -30,6 +31,7 @@ export default function HomeScreen() {
       videos: [
         { title: "Pushups", key: "pushups", src: pushups },
         { title: "Squats", key: "squats", src: squats },
+        { title: "Situps", key: "situps", src: situps},
       ],
     },
     {
